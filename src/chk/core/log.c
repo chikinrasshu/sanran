@@ -50,22 +50,22 @@ CHK_CORE_API void chk_log_set_sev(chk_log_sev_t sev) {
   g_log_sev = sev;
 }
 
-CHK_CORE_LOCAL void _chk_log(chk_log_sev_t sev, const char* sender, const char* msg, const char* f, int ln,
-                             const char* fn) {
+CHK_CORE_API void _chk_log(chk_log_sev_t sev, const char* sender, const char* msg, const char* f, int ln,
+                           const char* fn) {
   chk_log_fn_t log_fn = chk_log_get_fn();
   log_fn(sev, sender, msg, f, ln, fn);
 }
 
-CHK_CORE_LOCAL void _chk_log_f(chk_log_sev_t sev, const char* sender, const char* msg, const char* f, int ln,
-                               const char* fn, ...) {
+CHK_CORE_API void _chk_log_f(chk_log_sev_t sev, const char* sender, const char* msg, const char* f, int ln,
+                             const char* fn, ...) {
   va_list args;
   va_start(args, fn);
   _chk_log_v(sev, sender, msg, f, ln, fn, args);
   va_end(args);
 }
 
-CHK_CORE_LOCAL void _chk_log_v(chk_log_sev_t sev, const char* sender, const char* msg, const char* f, int ln,
-                               const char* fn, va_list args) {
+CHK_CORE_API void _chk_log_v(chk_log_sev_t sev, const char* sender, const char* msg, const char* f, int ln,
+                             const char* fn, va_list args) {
   char buf[1024];
 
   va_list args_copy;
